@@ -1,0 +1,194 @@
+/* —— RESET & BASE —— */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  h1 {
+    margin: 1rem 0;
+    font-size: 2rem;
+  }
+  
+  .controls {
+    margin-bottom: 0.5rem;
+  }
+  .controls select,
+  .controls button {
+    background: #14141c;
+    border: 1px solid #333;
+    padding: 0.5rem 1rem;
+    color: #e0e0e0;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  /* —— TIMER —— */
+  .timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* —— PERFORMANCE RIM CIRCLE —— */
+  .circle-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background:
+      /* inner rubber + hub gradient */
+      radial-gradient(
+        circle at center,
+        #1f1f2d 55%, /* tire rubber */
+        #0a0a0f 100%
+      ),
+      /* metallic spokes */
+      conic-gradient(
+        from -90deg,
+        #555 0deg 20deg,
+        #222 20deg 40deg,
+        #555 40deg 60deg,
+        #222 60deg 80deg,
+        #555 80deg 100deg,
+        #222 100deg 120deg,
+        #555 120deg 140deg,
+        #222 140deg 160deg,
+        #555 160deg 180deg,
+        #222 180deg 200deg,
+        #555 200deg 220deg,
+        #222 220deg 240deg,
+        #555 240deg 260deg,
+        #222 260deg 280deg,
+        #555 280deg 300deg,
+        #222 300deg 320deg,
+        #555 320deg 340deg,
+        #222 340deg 360deg
+      );
+    box-shadow:
+      inset 0 0 30px rgba(0,0,0,0.8),
+      0 0 20px rgba(58,58,255,0.5);
+  }
+  
+  /* —— NUMBERS (STATIC ON RIM) —— */
+  .number {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1f1f2d, #0a0a0f);
+    border: 2px solid #333;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    pointer-events: none;
+    transition: transform 0.2s;
+  }
+  .number:hover {
+    transform: scale(1.1);
+    border-color: #3a3aff;
+    box-shadow: 0 0 8px rgba(58,58,255,0.7);
+  }
+  
+  .input-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .input-area input {
+    padding: 0.5rem;
+    width: 120px;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    background: #14141c;
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  .input-area input.wrong {
+    border-color: #ff4d4d;
+    animation: shake 0.3s;
+  }
+  .input-area button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #3a3aff;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .message {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    min-height: 1.2em;
+  }
+  
+  /* shake on wrong */
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%     { transform: translateX(-5px); }
+    75%     { transform: translateX(5px); }
+  }
+  
+  /* dark/light toggle */
+  .dark-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  
+  /* —— NEON BUTTONS —— */
+.btn-group {
+    margin-bottom: 1rem;
+  }
+  .neon-btn {
+    position: relative;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    margin: 0 .5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #3a3aff;
+    background: transparent;
+    border: 2px solid #3a3aff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .neon-btn::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; bottom: -4px; right: -4px;
+    background: #3a3aff;
+    filter: blur(8px);
+    opacity: 0.6;
+    border-radius: 6px;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+  .neon-btn:hover {
+    color: #fff;
+  }
+  .neon-btn:hover::before {
+    opacity: 1;
+  }
+  
