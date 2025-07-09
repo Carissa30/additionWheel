@@ -94,14 +94,19 @@ answerInput.addEventListener('keydown', e => {
 });
 
 startBtn.addEventListener('click', () => {
+  if (!timerRunning) {
     startTimer();
     timerRunning = true;
+    startBtn.textContent = 'Running...';
+  }
 });
 
 stopBtn.addEventListener('click', () => {
-    stopTimer();
-    timerRunning = false;
+  stopTimer();
+  timerRunning = false;
+  startBtn.textContent = 'Start Timer';
 });
+
 
 // Dark/light toggle
 document.querySelector('.dark-toggle').addEventListener('click', () => {
