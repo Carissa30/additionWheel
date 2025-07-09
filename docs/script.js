@@ -94,6 +94,7 @@ answerInput.addEventListener('keydown', e => {
 });
 
 startBtn.addEventListener('click', () => {
+    startTimer();
     timerRunning = true;
 });
 
