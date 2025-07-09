@@ -8,11 +8,20 @@ const timerDisplay = document.getElementById('timer');
 const startBtn     = document.getElementById('start-timer');
 const stopBtn      = document.getElementById('stop-timer');
 
+
 let numbers = [];
 let correctSum = 0;
 let startTime = 0;
 let timerInterval;
 let timerRunning = false;    //  track whether timer is running
+let bestTime = null; // Holds the best (lowest) correct time
+
+// Load best time from localStorage
+const storedBest = localStorage.getItem('bestTime');
+if (storedBest !== null) {
+  bestTime = parseFloat(storedBest);
+  bestTimeDiv.textContent = `Best Time: ${bestTime.toFixed(2)}s`;
+}
 
 function generateNumbers(count) {
   numbers = [];
@@ -79,6 +88,12 @@ submitBtn.addEventListener('click', () => {
   if (userSum === correctSum) {
     stopTimer();
     const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+    // ✅ Best time logic with localStorage
+    if (bestTime === null || elapsed < bestTime) {
+      bestTime = elapsed;
+      localStorage.setItem('bestTime', bestTime);
+      bestTimeDiv.textContent = `Best Time: ${elapsedStr}s`;
+    }
     messageDiv.textContent = `✅ Correct! Time: ${elapsed}s — Generating new…`;
     setTimeout(newProblem, 1500);
   } else {
